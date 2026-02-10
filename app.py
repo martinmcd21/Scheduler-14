@@ -5909,7 +5909,7 @@ def _create_individual_invite(
     ics_bytes = _build_ics(
         organizer_email=organizer_email,
         organizer_name=organizer_name,
-        attendee_emails=[a[0] for a in attendees],
+        attendee_emails=[a[0] for a in attendees] + [a[0] for a in (cc_attendees or [])],
         summary=effective_subject,
         description=agenda,
         dtstart_utc=start_utc,
@@ -6281,7 +6281,7 @@ def _create_group_invite(
     ics_bytes = _build_ics(
         organizer_email=organizer_email,
         organizer_name=organizer_name,
-        attendee_emails=[a[0] for a in attendees],
+        attendee_emails=[a[0] for a in attendees] + [a[0] for a in (cc_attendees or [])],
         summary=effective_subject,
         description=agenda,
         dtstart_utc=start_utc,
@@ -6633,7 +6633,7 @@ def _handle_create_invite(
     ics_bytes = _build_ics(
         organizer_email=organizer_email,
         organizer_name=organizer_name,
-        attendee_emails=[a[0] for a in attendees],
+        attendee_emails=[a[0] for a in attendees] + [a[0] for a in (cc_attendees or [])],
         summary=effective_subject,
         description=agenda,
         dtstart_utc=start_utc,
@@ -6700,7 +6700,7 @@ def _handle_create_invite(
             st.session_state["last_invite_ics_bytes"] = _build_ics(
                 organizer_email=organizer_email,
                 organizer_name=organizer_name,
-                attendee_emails=[a[0] for a in attendees],
+                attendee_emails=[a[0] for a in attendees] + [a[0] for a in (cc_attendees or [])],
                 summary=effective_subject,
                 description=agenda,
                 dtstart_utc=start_utc,
